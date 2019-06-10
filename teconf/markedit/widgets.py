@@ -9,10 +9,11 @@ from django.utils import encoding
 
 class MarkEdit(forms.Textarea):
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
 
         # Prepare values
-        attrs = self.build_attrs(attrs, name=name)
+        # attrs = self.build_attrs(attrs, name=name)
+        attrs = self.build_attrs(attrs, {'name':name})
         if not value:
             value = ''
 
@@ -24,12 +25,18 @@ class MarkEdit(forms.Textarea):
 
         # Render widget to HTML
         t = loader.get_template('markedit/ui.html')
-        c = Context({
+        # c = Context({
+        #     'attributes': self._render_attrs(attrs),
+        #     'value': conditional_escape(encoding.force_bytes(value)),
+        #     'id': attrs['id'],
+        #     'options': options,
+        # })
+        c = {
             'attributes': self._render_attrs(attrs),
-            'value': conditional_escape(encoding.force_unicode(value)),
+            'value': conditional_escape(encoding.force_bytes(value)),
             'id': attrs['id'],
             'options': options,
-        })
+        }
 
         return t.render(c)
 

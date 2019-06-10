@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Submit New Proposal</title>
+    {% load bootstrap_tags %}
 </head>
 <body>
     <form >
       {% csrf_token %}
-      {{ form }}
+      {{ form|as_bootstrap }}
     </form>
 </body>
 </html>
