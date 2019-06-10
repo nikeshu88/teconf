@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Submit a Proposal</title>
+    <title>Proposals</title>
 </head>
 <body>
     <form method="post">
     {% csrf_token %}
-    {% for p_type in proposal_types %}
+        <a class="lean" href="{% url 'proposals:new_proposal' %}">New Proposal</a>
+    {% for proposal in proposals %}
       <p>
-        {{ p_type.p_type }} <a class="lean" href="{{ p_type.p_type_url }}">Submit a {{ p_type.p_type }}</a> <br>
+        {{ proposal }}</a> <br>
       </p>
     {% endfor %}
   </form>

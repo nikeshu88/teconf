@@ -7,9 +7,9 @@
 <body>
     <form method="post">
     {% csrf_token %}
-    {% for proposal in proposals %}
+    {% for p_type in proposal_types %}
       <p>
-        {{ proposal }} <br>
+        {{ p_type.p_type }} <a class="lean" href="{{ p_type.p_type_url }}">Submit a {{ p_type.p_type }}</a> <br>
       </p>
     {% endfor %}
   </form>
